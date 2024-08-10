@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Chats International</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+            color: #333;
+        }
+        header {
+            background: #0078d4;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header-title {
+            margin: 0;
+            font-size: 2em;
+        }
+        .header-subtitle {
+            margin: 5px 0;
+            font-size: 1.2em;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            padding: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        .card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .card ul li:last-child {
+            border-bottom: none;
+        }
+        footer {
+            background: #0078d4;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .promotion, .event {
+            color: #0078d4;
+        }
+        .promotion {
+            background: #e3f2fd;
+        }
+        .event {
+            background: #f1f8e9;
+        }
+        .button {
+            display: block;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background: #000; /* Default color black */
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background: #000; /* Hover color also black */
+        }
+        .member-count-card {
+            text-align: center;
+        }
+        .member-count {
+            font-size: 2em;
+            margin: 10px 0;
+            color: #0078d4;
+        }
+        .admin-list a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+        .admin-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Random Chats International</h1>
+        <p class="header-subtitle">Largest Community on Telegram</p>
+        <a href="https://t.me/Randomchatschat" class="button" target="_blank">Join Group ðŸš€</a>
+    </header>
+
+    <div class="container">
+        <!-- Member Count -->
+        <div class="card member-count-card">
+            <h2>Member Count</h2>
+            <p class="member-count">Loading...</p>
+        </div>
+
+        <div class="card promotions">
+            <h2>Promotions</h2>
+            <ul>
+                <li>
+                    <strong>Independence Giveaway:</strong> Win exciting prizes! <br>
+                    <span>Date: August 15, 2024</span>
+                </li>
+                <li>
+                    <strong>Chat Fight:</strong> Exciting prizes for active members.<br>
+                    <span>Date: 1st of every month.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card events">
+            <h2>Events</h2>
+            <ul>
+                <li>
+                    <strong>Weekly Chat:</strong> Join our weekly discussion! <br>
+                    <span>Date: Every Friday</span>
+                </li>
+                <li>
+                    <strong>Vc Music:</strong> Listen Music together! <br>
+                    <span>Date: Every day - 7 to 8pm IST</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Admin List</h2>
+            <ul class="admin-list">
+                <li><a href="https://t.me/Yhhuiio" target="_blank">@Yhhuiio</a> - Admin</li>
+                <li><a href="https://t.me/Pittowpiooh" target="_blank">@Pittowpiooh</a> - Admin</li>
+                <li><a href="https://t.me/Rishi_gehlot_12" target="_blank">@Rishi_gehlot_12</a> - Admin</li>
+                <li><a href="https://t.me/skytushhhhh" target="_blank">@skytushhhhh</a> - Admin</li>
+                <li><a href="https://t.me/Dukkuhere" target="_blank">@Dukkuhere</a> - Admin</li>
+                <li><a href="https://t.me/IamOvin" target="_blank">@IamOvin</a> - Admin</li>
+                <li><a href="https://t.me/Anime_cursed" target="_blank">@Anime_cursed</a> - Admin</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Rules</h2>
+            <ul>
+                <li>Be respectful to others.</li>
+                <li>No spamming or advertising.</li>
+                <li>Follow the Telegram community guidelines.</li>
+                <li>only English is permitted in the chat</li>
+                <li>Avoid using abusive language.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Random Chats International. All rights reserved.
+    </footer>
+    
+    <script>
+        async function fetchMemberCount() {
+            try {
+                const response = await fetch('http://RandomChats.netlify.app/member-count');
+                const data = await response.json();
+                document.querySelector('.member-count').innerText = data.count;
+            } catch (error) {
+                document.querySelector('.member-count').innerText = 'Error fetching member count';
+            }
+        }
+
+        // Fetch member count on page load
+        fetchMemberCount();
+    </script>
+</body>
+</html>
