@@ -177,7 +177,7 @@
     <script>
         async function fetchMemberCount() {
             try {
-                const response = await fetch('http://RandomChats.netlify.app/member-count');
+                const response = await fetch('http://RandomChatint.netlify.app/member-count');
                 const data = await response.json();
                 document.querySelector('.member-count').innerText = data.count;
             } catch (error) {
