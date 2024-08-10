@@ -70,104 +70,58 @@
             background: #f1f8e9;
         }
         .button {
-            display: block;
-            padding: 15px 20px;
-            font-size: 1.2em;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
             color: #fff;
-            background: #000; /* Default color black */
+            background: #0078d4;
             border: none;
             border-radius: 5px;
             text-align: center;
             cursor: pointer;
             text-decoration: none;
-            margin-top: 20px;
-            transition: background 0.3s;
+            margin-top: 10px;
         }
         .button:hover {
-            background: #000; /* Hover color also black */
-        }
-        .member-count-card {
-            text-align: center;
+            background: #0056a3;
         }
         .member-count {
-            font-size: 2em;
-            margin: 10px 0;
-            color: #0078d4;
+            font-size: 1.2em;
+            margin-top: 10px;
+            text-align: center;
         }
-        .admin-list a {
-            color: #0078d4;
+        .join-button {
+            background-color: #000;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
             text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        .admin-list a:hover {
-            text-decoration: underline;
+        .join-button:hover {
+            background-color: #000;
         }
     </style>
 </head>
 <body>
     <header>
         <h1 class="header-title">Random Chats International</h1>
-        <p class="header-subtitle">Largest Community on Telegram</p>
-        <a href="https://t.me/Randomchatschat" class="button" target="_blank">Join Group 🚀</a>
+        <p class="header-subtitle">Stay updated with our latest promotions, events, and more!</p>
+        <a href="https://t.me/Randomchatschat" class="join-button">Join Group 🚀</a>
     </header>
 
     <div class="container">
-        <!-- Member Count -->
-        <div class="card member-count-card">
+        <div class="card">
             <h2>Member Count</h2>
             <p class="member-count">Loading...</p>
         </div>
 
-        <div class="card promotions">
-            <h2>Promotions</h2>
-            <ul>
-                <li>
-                    <strong>Independence Giveaway:</strong> Win exciting prizes! <br>
-                    <span>Date: August 15, 2024</span>
-                </li>
-                <li>
-                    <strong>Chat Fight:</strong> Exciting prizes for active members.<br>
-                    <span>Date: 1st of every month.</span>
-                </li>
-            </ul>
-        </div>
+        <!-- Additional content -->
 
-        <div class="card events">
-            <h2>Events</h2>
-            <ul>
-                <li>
-                    <strong>Weekly Chat:</strong> Join our weekly discussion! <br>
-                    <span>Date: Every Friday</span>
-                </li>
-                <li>
-                    <strong>Vc Music:</strong> Listen Music together! <br>
-                    <span>Date: Every day - 7 to 8pm IST</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>Admin List</h2>
-            <ul class="admin-list">
-                <li><a href="https://t.me/Yhhuiio" target="_blank">@Yhhuiio</a> - Admin</li>
-                <li><a href="https://t.me/Pittowpiooh" target="_blank">@Pittowpiooh</a> - Admin</li>
-                <li><a href="https://t.me/Rishi_gehlot_12" target="_blank">@Rishi_gehlot_12</a> - Admin</li>
-                <li><a href="https://t.me/skytushhhhh" target="_blank">@skytushhhhh</a> - Admin</li>
-                <li><a href="https://t.me/Dukkuhere" target="_blank">@Dukkuhere</a> - Admin</li>
-                <li><a href="https://t.me/IamOvin" target="_blank">@IamOvin</a> - Admin</li>
-                <li><a href="https://t.me/Anime_cursed" target="_blank">@Anime_cursed</a> - Admin</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>Rules</h2>
-            <ul>
-                <li>Be respectful to others.</li>
-                <li>No spamming or advertising.</li>
-                <li>Follow the Telegram community guidelines.</li>
-                <li>only English is permitted in the chat</li>
-                <li>Avoid using abusive language.</li>
-            </ul>
-        </div>
     </div>
 
     <footer>
@@ -177,15 +131,20 @@
     <script>
         async function fetchMemberCount() {
             try {
-                const response = await fetch('http://45.153.184.41:7030/member-count');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                // Replace <YOUR_BOT_TOKEN> and @randomchatschat with your actual bot token and chat ID
+                const botToken = 'YOUR_BOT_TOKEN';
+                const chatId = '@randomchatschat';
+                const response = await fetch(`https://api.telegram.org/bot${botToken}/getChatMembersCount?chat_id=${chatId}`, {
+                    mode: 'cors'
+                });
                 const data = await response.json();
-                document.querySelector('.member-count').innerText = data.count;
+                if (data.ok) {
+                    document.querySelector('.member-count').innerText = data.result;
+                } else {
+                    document.querySelector('.member-count').innerText = 'Error fetching member count';
+                }
             } catch (error) {
                 document.querySelector('.member-count').innerText = 'Error fetching member count';
-                console.error('Fetch error:', error);
             }
         }
 
